@@ -1,6 +1,10 @@
 const express= require("express");
 const app= express();
 const path= require("path");
+const dbo = require("./db_connection");
+let data = [];
+let locations = [];
+
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
@@ -8,25 +12,50 @@ app.set('view engine', 'ejs');
 // Set views directory
 app.set('views', path.join(__dirname, 'views'));
 
-// home page middleware
-app.get('/',(req,res)=>{
-    const filePath = path.join(__dirname,'views','homePage.ejs');
-    res.render(filePath,{pageTitle:'Home Page'});
+app.use(async (req,res,next)=>{
+    const dbo = require('./db_connection.js');
+    const database = await dbo.getDatabase();
+    const collection = database.collection('weatherData');
+    const cursor = collection.find({});
+    data =  await cursor.toArray();
+
+    locations = data.map((item)=>{
+        return item.location;
+    })
+
+    next();
 })
 
-app.get('/:location',(req,res,next)=>{
-    const location = req.params.location;
+app.get('/',(req,res)=>{
+    const filePath = path.join(__dirname,'views','homePage.ejs');
+    res.render(filePath,{locations: locations});
+})
 
-    // logic to get data from database
-    // app.get('/',async (req,res)=>{
-    // let database=await dbo.getDatabase();
-    // const collection=database.collection(collection_name );})
-
-    // const cursor=collection.find({});
-    // let authors=await cursor.toArray();
-
+app.get('/:location',async (req,res,next)=>{
     const filePath = path.join(__dirname,'views',`detailsPage.ejs`);
-    res.render(filePath,{location:location});
+    const location = req.params.location;
+    const isLocation = locations.includes(location);
+    const content = {
+        location: location,
+        temperature: "N/A",
+        humidity: "N/A",
+        pressure: "N/A",
+    };
+
+    if(!isLocation){
+        res.status(404).render(filePath,{data: content, isValidLocation: isLocation});
+    }
+
+    data.forEach((item)=>{
+        if(item.location === location){
+            content.temperature = item.temperature;
+            content.humidity = item.humidity;
+            content.pressure = item.pressure;
+        }
+    })
+
+    console.log(location);
+    res.status(200).render(filePath,{data:content, isValidLocation: isLocation});
 })
 
 app.listen(8000,()=>{console.log("Listening to port 8000");})

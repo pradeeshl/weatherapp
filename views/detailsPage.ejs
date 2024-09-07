@@ -6,7 +6,16 @@
         <title>Details</title>
     </head>
     <body>
+        <a href="/">Back</a>
         <h1>Details</h1>
-        <%= location %>
+
+        <% if(isValidLocation === false) {%>
+            <h2>Location not found</h2>
+            <h3>Search for a valid location</h3>
+        <% } %>
+
+        <h2><%= data.location %></h2>
+        <h3>Temperature: <%= data.temperature %> °C</h3>
+        <h3>Humidity: <%= data.humidity %> °C</h3>
     </body>
 </html>

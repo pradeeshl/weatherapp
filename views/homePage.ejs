@@ -6,6 +6,11 @@
         <title>Document</title>
     </head>
     <body>
-        <%= pageTitle %>
+        <h1>Weather App</h1>
+        <ul>
+            <% locations.forEach((location) => {%>
+                <a href="<%= location %>"><%= location %></a>
+            <% }) %>
+        </ul>
     </body>
 </html>

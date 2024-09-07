@@ -39,7 +39,6 @@ app.get('/:location',async (req,res,next)=>{
         location: location,
         temperature: "N/A",
         humidity: "N/A",
-        pressure: "N/A",
     };
 
     if(!isLocation){
@@ -50,7 +49,6 @@ app.get('/:location',async (req,res,next)=>{
         if(item.location === location){
             content.temperature = item.temperature;
             content.humidity = item.humidity;
-            content.pressure = item.pressure;
         }
     })
 

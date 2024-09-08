@@ -1,0 +1,82 @@
+[
+  {
+    "location": "Delhi",
+    "temperature": 35,
+    "humidity": 45
+  },
+  {
+    "location": "Mumbai",
+    "temperature": 30,
+    "humidity": 70
+  },
+  {
+    "location": "Kolkata",
+    "temperature": 31,
+    "humidity": 75
+  },
+  {
+    "location": "Chennai",
+    "temperature": 33,
+    "humidity": 65
+  },
+  {
+    "location": "Bangalore",
+    "temperature": 28,
+    "humidity": 60
+  },
+  {
+    "location": "Hyderabad",
+    "temperature": 32,
+    "humidity": 55
+  },
+  {
+    "location": "Ahmedabad",
+    "temperature": 36,
+    "humidity": 40
+  },
+  {
+    "location": "Pune",
+    "temperature": 29,
+    "humidity": 55
+  },
+  {
+    "location": "Jaipur",
+    "temperature": 34,
+    "humidity": 35
+  },
+  {
+    "location": "Lucknow",
+    "temperature": 33,
+    "humidity": 50
+  },
+  {
+    "location": "Bhopal",
+    "temperature": 30,
+    "humidity": 60
+  },
+  {
+    "location": "Patna",
+    "temperature": 32,
+    "humidity": 65
+  },
+  {
+    "location": "Thiruvananthapuram",
+    "temperature": 29,
+    "humidity": 75
+  },
+  {
+    "location": "Guwahati",
+    "temperature": 28,
+    "humidity": 80
+  },
+  {
+    "location": "Chandigarh",
+    "temperature": 31,
+    "humidity": 50
+  },
+  {
+    "location": "Indore",
+    "temperature": 30,
+    "humidity": 55
+  }
+]
